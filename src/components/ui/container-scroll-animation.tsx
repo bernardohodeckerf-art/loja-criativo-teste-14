@@ -1,0 +1,3 @@
+import { useRef, type ReactNode } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+export function ContainerScroll({children}:{children:ReactNode}){const ref=useRef<HTMLDivElement>(null);const reduced=useReducedMotion();const {scrollYProgress}=useScroll({target:ref,offset:['start end','center center']});const rotation=useTransform(scrollYProgress,[0,1],[20,0]);const scale=useTransform(scrollYProgress,[0,1],[1.05,1]);return <div ref={ref} className="scroll-stage"><motion.div className="scroll-panel" style={reduced?{}:{rotateX:rotation,scale}}>{children}</motion.div></div>}
